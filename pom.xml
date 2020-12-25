@@ -13,6 +13,11 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
@@ -23,6 +28,15 @@
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>2.3.3</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+            <!--provided：已提供范围使用，就是参与编译，但是不会被打到包里，
+            lombok本身也只要在编译时发挥作用就可以了（如果不加这个作用于，对于程序运行不会有影响，
+            lombok将会被打到war包中，tomcat7启动时会有报错信息，好像是版本不完全兼容）-->
         </dependency>
     </dependencies>
     <build>
@@ -37,6 +51,10 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <!--tomcat插件，idea社区版本没有自带的Tomcat(企业版可以忽略这个问题，但是企业本具体怎么配置暂时也没试出来，所以还是用插件的方式启动)，
+            需要在idea运行旁边的配置中添加Tomcat插件并以maven的方式启动Tomcat，具体为：打开配置，点击加号，添加一个maven插件，然后进行配置：
+            配置目录（Working directory）为项目目录，命令（Command line）为tomcat7:run，点击运行即可启动项目
+            ps:据说这个插件最高只有Tomcat7，所以这里使用的是7 -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
