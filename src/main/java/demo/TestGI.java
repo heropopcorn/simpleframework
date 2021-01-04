@@ -1,4 +1,4 @@
-package com.xuan.demo;
+package demo;
 
 public class TestGI implements TestInterFace<String,Integer> {
     @Override

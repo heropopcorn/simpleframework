@@ -1,4 +1,4 @@
-package com.xuan.demo;
+package demo;
 
 public interface TestInterFace<T, N> {
     T testT();
