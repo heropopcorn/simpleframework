@@ -38,6 +38,12 @@
             lombok本身也只要在编译时发挥作用就可以了（如果不加这个作用于，对于程序运行不会有影响，
             lombok将会被打到war包中，tomcat7启动时会有报错信息，好像是版本不完全兼容）-->
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.5.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>simpleFramework</finalName>
