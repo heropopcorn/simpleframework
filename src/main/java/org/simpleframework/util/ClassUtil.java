@@ -1,20 +1,24 @@
 package org.simpleframework.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.omg.CORBA.INTERNAL;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
-* 类加载工具类
-* ClassUtil
-* @Author xuan
-* @Date  2021/1/5 14:08
-*
-*/
+ * 类加载工具类
+ * ClassUtil
+ *
+ * @Author xuan
+ * @Date 2021/1/5 14:08
+ */
 @Slf4j
 public class ClassUtil {
 
@@ -121,4 +125,47 @@ public class ClassUtil {
     public static ClassLoader getClassLoader() {
         return Thread.currentThread().getContextClassLoader();
     }
+
+
+    /**
+     *  实例化class
+     * @param clazz class类型
+     * @param accessible  是否支持创建私有
+     * @param <T>
+     * @return
+     */
+    public static <T> T newInstance(Class<?> clazz,boolean accessible) {
+        try {
+            Constructor<?> constructor = clazz.getDeclaredConstructor();
+            constructor.setAccessible(accessible);
+            return (T) constructor.newInstance();
+        } catch (Exception e) {
+            log.error("simpleframework : newInstance error");
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 设置类的属性值
+     * @param field
+     * @param target
+     * @param value
+     * @param accessible
+     */
+    public static void setField(Field field,Object target,Object value,boolean accessible){
+        field.setAccessible(accessible);
+        try {
+            /*
+            关于Field的set方法，入参说明如下：
+            target: the object whose field should be modified
+            value: the new value for the field of {@code target}
+            Field本身是通过Class对象获取的，是属于Class对象的，不属于具体的实体，所以调用field设置属性值时必须传入具体的实现
+             */
+            field.set(target,value);
+        } catch (IllegalAccessException e) {
+           log.error("setField error:{}",e);
+           throw new RuntimeException(e);
+        }
+    }
+
 }

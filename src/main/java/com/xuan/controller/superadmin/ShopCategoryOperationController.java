@@ -4,12 +4,17 @@ import com.xuan.entity.HeadLine;
 import com.xuan.entity.ShopCategory;
 import com.xuan.entity.dto.Result;
 import com.xuan.service.solo.ShopCategoryService;
+import org.simpleframework.core.annotation.Controller;
+import org.simpleframework.inject.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+@Controller
 public class ShopCategoryOperationController {
+
+    @Autowired
     private ShopCategoryService shopCategoryService;
 
 

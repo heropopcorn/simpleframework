@@ -13,7 +13,7 @@ public class ClassUtilTest {
         Set<Class<?>> classSet = ClassUtil.extractPackageClass("com.xuan.entity");
         System.out.println(classSet);
         Assertions.assertEquals(4,classSet.size());
-
-
     }
+
+
 }

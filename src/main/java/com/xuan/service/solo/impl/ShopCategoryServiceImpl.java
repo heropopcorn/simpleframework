@@ -3,9 +3,11 @@ package com.xuan.service.solo.impl;
 import com.xuan.entity.ShopCategory;
 import com.xuan.entity.dto.Result;
 import com.xuan.service.solo.ShopCategoryService;
+import org.simpleframework.core.annotation.Service;
 
 import java.util.List;
 
+@Service
 public class ShopCategoryServiceImpl implements ShopCategoryService {
 
     @Override
